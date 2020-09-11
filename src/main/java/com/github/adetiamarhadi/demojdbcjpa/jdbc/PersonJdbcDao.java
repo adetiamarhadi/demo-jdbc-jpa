@@ -1,6 +1,7 @@
 package com.github.adetiamarhadi.demojdbcjpa.jdbc;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
+import com.github.adetiamarhadi.demojdbcjpa.mapper.PersonRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +17,7 @@ public class PersonJdbcDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Person> findAll() {
-        return this.jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<>(Person.class));
+        return this.jdbcTemplate.query("select * from person", new PersonRowMapper());
     }
 
     public Person findById(int id) {
