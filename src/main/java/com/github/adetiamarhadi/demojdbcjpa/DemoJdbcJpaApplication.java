@@ -1,11 +1,14 @@
 package com.github.adetiamarhadi.demojdbcjpa;
 
+import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Date;
 
 @Slf4j
 @SpringBootApplication
@@ -21,5 +24,21 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		log.info("{}", this.personJdbcDao.findAll());
+		log.info("{}", this.personJdbcDao.findById(1001));
+		log.info("{}", this.personJdbcDao.deleteById(1001));
+		Person person1002 = Person.builder()
+				.id(1002)
+				.name("avrillia")
+				.location("bekasi")
+				.birthDate(new Date())
+				.build();
+		log.info("{}", this.personJdbcDao.update(person1002));
+		Person person1004 = Person.builder()
+				.id(1004)
+				.name("adetia")
+				.location("jakarta")
+				.birthDate(new Date())
+				.build();
+		log.info("{}", this.personJdbcDao.insert(person1004));
 	}
 }
