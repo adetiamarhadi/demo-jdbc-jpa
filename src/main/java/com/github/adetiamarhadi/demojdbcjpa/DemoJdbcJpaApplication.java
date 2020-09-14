@@ -61,5 +61,7 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 				.birthDate(new Date())
 				.build();
 		log.info("{}", this.personJpaRepository.update(person1003));
+		this.personJpaRepository.deleteById(1004);
+		log.info("{}", this.personJpaRepository.findById(1004));
 	}
 }
