@@ -1,5 +1,6 @@
 package com.github.adetiamarhadi.demojdbcjpa;
 
+import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
@@ -74,5 +75,13 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		log.info("{}", this.courseRepository.findById(1005L));
 		this.courseRepository.deleteById(1005L);
 		log.info("{}", this.courseRepository.findById(1005L));
+		Course angularCourse = Course.builder()
+				.name("Udemy - Angular Course")
+				.build();
+		this.courseRepository.save(angularCourse);
+		Course course1004 = this.courseRepository.findById(1004L);
+		course1004.setName("updated course");
+		Course update = this.courseRepository.update(course1004);
+		log.info("{}", update);
 	}
 }
