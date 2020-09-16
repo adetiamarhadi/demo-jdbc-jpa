@@ -16,7 +16,7 @@ class CourseRepositoryTest {
     @Test
     void findById() {
         Course course = this.courseRepository.findById(1004L);
-        assertEquals("Udemy - Hibernate", course.getName());
+        assertEquals("updated course", course.getName());
     }
 
     @Test
@@ -24,5 +24,21 @@ class CourseRepositoryTest {
         this.courseRepository.deleteById(1006L);
         Course course = this.courseRepository.findById(1006L);
         assertNull(course);
+    }
+
+    @Test
+    void save() {
+        Course kafkaCourse = Course.builder()
+                .name("Udemy - Kafka Course")
+                .build();
+        this.courseRepository.save(kafkaCourse);
+        Course course = this.courseRepository.findById(3L);
+        assertEquals("Udemy - Kafka Course", course.getName());
+    }
+
+    @Test
+    void update() {
+        Course course = this.courseRepository.findById(1007L);
+        assertEquals("Udemy - Elastic Search", course.getName());
     }
 }
