@@ -11,3 +11,5 @@ insert into person (id, name, location, birth_date) values (1002, 'Avril', 'Jaka
 insert into person (id, name, location, birth_date) values (1003, 'Tataz', 'Bekasi', sysdate());
 
 insert into course (id, name) values (1004, 'Udemy - Hibernate');
+insert into course (id, name) values (1005, 'Udemy - Spring Cloud');
+insert into course (id, name) values (1006, 'Udemy - Docker');

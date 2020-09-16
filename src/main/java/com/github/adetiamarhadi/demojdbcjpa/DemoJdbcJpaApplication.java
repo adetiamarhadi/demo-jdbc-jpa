@@ -71,5 +71,7 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 		log.info("course repository...");
 		log.info("{}", this.courseRepository.findById(1004L));
+		this.courseRepository.deleteById(1004L);
+		log.info("{}", this.courseRepository.findById(1004L));
 	}
 }
