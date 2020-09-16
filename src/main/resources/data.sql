@@ -9,3 +9,5 @@
 insert into person (id, name, location, birth_date) values (1001, 'Adet', 'Bekasi', sysdate());
 insert into person (id, name, location, birth_date) values (1002, 'Avril', 'Jakarta', sysdate());
 insert into person (id, name, location, birth_date) values (1003, 'Tataz', 'Bekasi', sysdate());
+
+insert into course (id, name) values (1004, 'Udemy - Hibernate');

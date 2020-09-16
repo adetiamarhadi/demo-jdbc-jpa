@@ -2,6 +2,7 @@ package com.github.adetiamarhadi.demojdbcjpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
+import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.PersonJpaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 	@Autowired
 	PersonJpaRepository personJpaRepository;
+
+	@Autowired
+	CourseRepository courseRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoJdbcJpaApplication.class, args);
@@ -64,5 +68,8 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		this.personJpaRepository.deleteById(1004);
 		log.info("{}", this.personJpaRepository.findById(1004));
 		log.info("{}", this.personJpaRepository.findAll());
+
+		log.info("course repository...");
+		log.info("{}", this.courseRepository.findById(1004L));
 	}
 }
