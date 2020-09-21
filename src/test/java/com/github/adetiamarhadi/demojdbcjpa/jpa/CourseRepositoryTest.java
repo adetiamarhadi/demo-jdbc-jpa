@@ -4,6 +4,7 @@ import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,5 +41,11 @@ class CourseRepositoryTest {
     void update() {
         Course course = this.courseRepository.findById(1007L);
         assertEquals("Udemy - Elastic Search", course.getName());
+    }
+
+    @Test
+    @DirtiesContext
+    void playWithEntityManager() {
+        this.courseRepository.playWithEntityManager();
     }
 }

@@ -30,4 +30,12 @@ public class CourseRepository {
     public Course update(Course course) {
         return this.entityManager.merge(course);
     }
+
+    public void playWithEntityManager() {
+        Course course = Course.builder()
+                .name("web services in 100 steps")
+                .build();
+        entityManager.persist(course);
+        course.setName("web services in 100 steps - updated");
+    }
 }

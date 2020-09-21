@@ -83,5 +83,7 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		course1004.setName("updated course");
 		Course update = this.courseRepository.update(course1004);
 		log.info("{}", update);
+
+		this.courseRepository.playWithEntityManager();
 	}
 }
