@@ -46,5 +46,24 @@ public class CourseRepository {
         entityManager.flush(); // you should flush it, before detach
         entityManager.detach(course2); // will no longer update course2 or use clear() to detach all beans
         course2.setName("angular in 100 steps - updated");
+
+        Course course3 = Course.builder()
+                .name("jenkins in 100 steps")
+                .build();
+        entityManager.persist(course3);
+
+        Course course4 = Course.builder()
+                .name("grpc in 10 steps")
+                .build();
+        entityManager.persist(course4);
+
+        entityManager.flush();
+
+        course3.setName("jenkins in 100 steps - updated");
+        course4.setName("grpc in 10 steps - updated");
+
+        entityManager.refresh(course3);
+
+        entityManager.flush();
     }
 }
