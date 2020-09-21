@@ -36,6 +36,15 @@ public class CourseRepository {
                 .name("web services in 100 steps")
                 .build();
         entityManager.persist(course);
+        entityManager.flush(); // auto commit
         course.setName("web services in 100 steps - updated");
+
+        Course course2 = Course.builder()
+                .name("angular in 100 steps")
+                .build();
+        entityManager.persist(course2);
+        entityManager.flush(); // you should flush it, before detach
+        entityManager.detach(course2); // will no longer update course2 or use clear() to detach all beans
+        course2.setName("angular in 100 steps - updated");
     }
 }
