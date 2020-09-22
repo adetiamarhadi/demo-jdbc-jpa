@@ -5,15 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
+@NamedQueries(value = {
+        @NamedQuery(name = "get_all_course", query = "select c from Course c"),
+        @NamedQuery(name = "get_all_100_steps_course", query = "select c from Course c where name like '%100 steps'")
+})
 public class Course {
 
     @Id

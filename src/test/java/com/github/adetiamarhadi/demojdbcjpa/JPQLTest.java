@@ -16,7 +16,7 @@ public class JPQLTest {
 
     @Test
     public void test() {
-        List<Course> courseList = entityManager.createQuery("select c from Course c", Course.class)
+        List<Course> courseList = entityManager.createNamedQuery("get_all_course", Course.class)
                 .getResultList();
         System.out.println(courseList);
     }
@@ -24,7 +24,7 @@ public class JPQLTest {
     @Test
     public void testWhere() {
         List<Course> resultList = entityManager
-                .createQuery("select c from Course c where name like '%100 steps'", Course.class).getResultList();
+                .createNamedQuery("get_all_100_steps_course", Course.class).getResultList();
         System.out.println(resultList);
     }
 }
