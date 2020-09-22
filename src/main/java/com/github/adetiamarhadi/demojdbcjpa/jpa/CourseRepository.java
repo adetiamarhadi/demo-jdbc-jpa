@@ -1,6 +1,7 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,21 @@ public class CourseRepository {
 
         entityManager.refresh(course3);
 
+        entityManager.flush();
+
+        Student student = Student.builder()
+                .name("adetia marhadi")
+                .build();
+        entityManager.persist(student);
+        entityManager.flush();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        student.setName("adetia marhadi - updated");
         entityManager.flush();
     }
 }
