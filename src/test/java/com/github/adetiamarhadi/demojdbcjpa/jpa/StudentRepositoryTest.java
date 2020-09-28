@@ -1,5 +1,6 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
+import com.github.adetiamarhadi.demojdbcjpa.entity.Passport;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,14 @@ class StudentRepositoryTest {
         Student student = entityManager.find(Student.class, 200001);
         log.info("student -> {}", student);
         log.info("passport -> {}", student.getPassport());
+    }
+
+    @Test
+    @Transactional
+    public void retrievePassportAndStudentDetails() {
+
+        Passport passport = entityManager.find(Passport.class, 300001);
+        log.info("passport -> {}", passport);
+        log.info("student -> {}", passport.getStudent());
     }
 }
