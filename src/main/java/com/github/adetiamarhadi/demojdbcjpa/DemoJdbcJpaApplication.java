@@ -5,6 +5,7 @@ import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.PersonJpaRepository;
+import com.github.adetiamarhadi.demojdbcjpa.jpa.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +26,9 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 	@Autowired
 	CourseRepository courseRepository;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoJdbcJpaApplication.class, args);
@@ -85,5 +89,6 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		log.info("{}", update);
 
 		this.courseRepository.playWithEntityManager();
+		this.studentRepository.saveStudentWithPasspor();
 	}
 }
