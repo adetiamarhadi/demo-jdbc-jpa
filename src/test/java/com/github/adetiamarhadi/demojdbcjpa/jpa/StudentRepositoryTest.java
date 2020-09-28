@@ -14,7 +14,15 @@ import javax.transaction.Transactional;
 class StudentRepositoryTest {
 
     @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
     EntityManager entityManager;
+
+    @Test
+    public void testSaveAndUpdate() {
+        studentRepository.saveAndUpdate();
+    }
 
     @Test
     @Transactional

@@ -32,6 +32,13 @@ public class StudentRepository {
         return this.entityManager.merge(student);
     }
 
+    public void saveAndUpdate() {
+        Student student = entityManager.find(Student.class, 200001);
+        Passport passport = student.getPassport();
+        passport.setNumber("X918201");
+        student.setName("updated");
+    }
+
     public void saveStudentWithPasspor() {
 
         Passport passport = Passport.builder()
