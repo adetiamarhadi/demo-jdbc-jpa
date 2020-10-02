@@ -77,7 +77,7 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		log.info("course repository...");
 		log.info("{}", this.courseRepository.findById(1004L));
 		log.info("{}", this.courseRepository.findById(1005L));
-		this.courseRepository.deleteById(1005L);
+//		this.courseRepository.deleteById(1005L);
 		log.info("{}", this.courseRepository.findById(1005L));
 		Course angularCourse = Course.builder()
 				.name("Udemy - Angular Course")
