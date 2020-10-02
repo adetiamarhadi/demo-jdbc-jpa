@@ -1,10 +1,15 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Review;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +18,9 @@ class CourseRepositoryTest {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     void findById() {
@@ -47,5 +55,20 @@ class CourseRepositoryTest {
     @DirtiesContext
     void playWithEntityManager() {
         this.courseRepository.playWithEntityManager();
+    }
+
+    @Test
+    @Transactional
+    void getReviews() {
+        Course course = this.courseRepository.findById(1007L);
+        List<Review> reviews = course.getReviews();
+        reviews.forEach(System.out::println);
+    }
+
+    @Test
+    void getCourse() {
+        Review review = this.entityManager.find(Review.class, 400001);
+        Course course = review.getCourse();
+        System.out.println(course.getName());
     }
 }
