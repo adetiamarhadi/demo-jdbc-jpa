@@ -2,6 +2,7 @@ package com.github.adetiamarhadi.demojdbcjpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Review;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.PersonJpaRepository;
@@ -12,7 +13,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @SpringBootApplication
@@ -90,6 +93,16 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 		this.courseRepository.playWithEntityManager();
 		this.studentRepository.saveStudentWithPasspor();
-		this.courseRepository.addReviewsForCourse();
+		List<Review> reviews = Arrays.asList(
+				Review.builder()
+						.rating("5")
+						.description("elasticsearch's course that makes me a superman!")
+						.build(),
+				Review.builder()
+						.rating("5")
+						.description("this elasticsearch course really amazing!")
+						.build()
+		);
+		this.courseRepository.addReviewsForCourse(1007L, reviews);
 	}
 }
