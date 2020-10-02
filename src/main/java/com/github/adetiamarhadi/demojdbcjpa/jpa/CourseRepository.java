@@ -1,6 +1,7 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Review;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -81,5 +82,27 @@ public class CourseRepository {
 
         student.setName("adetia marhadi - updated");
         entityManager.flush();
+    }
+
+    public void addReviewsForCourse() {
+
+        Course course = findById(1007L);
+
+        Review review1 = Review.builder()
+                .rating("5")
+                .description("this is greatest course that I had seen!")
+                .build();
+        Review review2 = Review.builder()
+                .rating("5")
+                .description("this course makes me more confident about elasticsearch!")
+                .build();
+
+        course.addReview(review1);
+        review1.setCourse(course);
+        course.addReview(review2);
+        review2.setCourse(course);
+
+        this.entityManager.persist(review1);
+        this.entityManager.persist(review2);
     }
 }

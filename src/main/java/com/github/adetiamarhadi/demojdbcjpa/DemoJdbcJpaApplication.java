@@ -90,5 +90,6 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 		this.courseRepository.playWithEntityManager();
 		this.studentRepository.saveStudentWithPasspor();
+		this.courseRepository.addReviewsForCourse();
 	}
 }
