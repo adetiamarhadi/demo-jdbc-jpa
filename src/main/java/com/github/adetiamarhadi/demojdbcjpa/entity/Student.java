@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +25,11 @@ public class Student {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
+
+    @ManyToMany
+    private List<Course> courses = new ArrayList<>();
+
+    public void addCourse(Course course) {
+        this.courses.add(course);
+    }
 }

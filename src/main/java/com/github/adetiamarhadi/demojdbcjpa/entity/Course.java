@@ -27,7 +27,14 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany
+    private List<Student> students = new ArrayList<>();
+
     public void addReview(Review review) {
         this.reviews.add(review);
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 }
