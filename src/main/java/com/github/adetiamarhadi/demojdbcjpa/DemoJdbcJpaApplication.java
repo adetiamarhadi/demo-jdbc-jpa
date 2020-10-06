@@ -3,6 +3,7 @@ package com.github.adetiamarhadi.demojdbcjpa;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Review;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.PersonJpaRepository;
@@ -104,5 +105,13 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 						.build()
 		);
 		this.courseRepository.addReviewsForCourse(1007L, reviews);
+
+		Student student = Student.builder()
+				.name("adetia marhadi")
+				.build();
+		Course course = Course.builder()
+				.name("mastering jpa and hibernate in 1000 steps")
+				.build();
+		this.studentRepository.saveStudentAndCourse(student, course);
 	}
 }

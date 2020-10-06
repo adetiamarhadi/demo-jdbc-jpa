@@ -35,6 +35,9 @@ public class Course {
     }
 
     public void addStudent(Student student) {
+        if (null == this.students) {
+            this.students = new ArrayList<>();
+        }
         this.students.add(student);
     }
 }

@@ -1,5 +1,6 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
+import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Passport;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,13 @@ public class StudentRepository {
                 .passport(passport)
                 .build();
         entityManager.persist(student);
+    }
+
+    public void saveStudentAndCourse(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+
+        this.entityManager.persist(student);
+        this.entityManager.persist(course);
     }
 }
