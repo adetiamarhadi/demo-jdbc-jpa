@@ -42,4 +42,12 @@ class StudentRepositoryTest {
         log.info("passport -> {}", passport);
         log.info("student -> {}", passport.getStudent());
     }
+
+    @Test
+    @Transactional
+    public void getStudentAndCourse() {
+        Student student = this.entityManager.find(Student.class, 200001);
+        System.out.println(student.getName());
+        student.getCourses().forEach(c -> System.out.println(c.getName()));
+    }
 }

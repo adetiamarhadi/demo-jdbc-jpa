@@ -71,4 +71,12 @@ class CourseRepositoryTest {
         Course course = review.getCourse();
         System.out.println(course.getName());
     }
+
+    @Test
+    @Transactional
+    void getCourseAndStudent() {
+        Course course = this.entityManager.find(Course.class, 1004L);
+        System.out.println(course.getName());
+        course.getStudents().forEach(s -> System.out.println(s.getName()));
+    }
 }
