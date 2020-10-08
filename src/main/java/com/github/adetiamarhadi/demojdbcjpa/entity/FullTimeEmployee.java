@@ -11,7 +11,7 @@ public class FullTimeEmployee extends Employee {
 
     private BigDecimal salary;
 
-    protected FullTimeEmployee(String name, BigDecimal salary) {
+    public FullTimeEmployee(String name, BigDecimal salary) {
         super(name);
         this.salary = salary;
     }

@@ -1,11 +1,9 @@
 package com.github.adetiamarhadi.demojdbcjpa;
 
-import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
-import com.github.adetiamarhadi.demojdbcjpa.entity.Person;
-import com.github.adetiamarhadi.demojdbcjpa.entity.Review;
-import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
+import com.github.adetiamarhadi.demojdbcjpa.entity.*;
 import com.github.adetiamarhadi.demojdbcjpa.jdbc.PersonJdbcDao;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.CourseRepository;
+import com.github.adetiamarhadi.demojdbcjpa.jpa.EmployeeRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.PersonJpaRepository;
 import com.github.adetiamarhadi.demojdbcjpa.jpa.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +32,9 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 	@Autowired
 	StudentRepository studentRepository;
+
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoJdbcJpaApplication.class, args);
@@ -113,5 +115,10 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 				.name("mastering jpa and hibernate in 1000 steps")
 				.build();
 		this.studentRepository.saveStudentAndCourse(student, course);
+
+		this.employeeRepository.save(new FullTimeEmployee("adet", new BigDecimal("10000")));
+		this.employeeRepository.save(new PartTimeEmployee("marhadi", new BigDecimal("50")));
+		List<Employee> all = this.employeeRepository.findAll();
+		log.info("{}", all);
 	}
 }
