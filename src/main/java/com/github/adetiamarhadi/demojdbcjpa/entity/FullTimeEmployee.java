@@ -1,11 +1,11 @@
 package com.github.adetiamarhadi.demojdbcjpa.entity;
 
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 
-@ToString
+@NoArgsConstructor
 @Entity
 public class FullTimeEmployee extends Employee {
 
@@ -18,5 +18,14 @@ public class FullTimeEmployee extends Employee {
 
     public BigDecimal getSalary() {
         return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "FullTimeEmployee{" +
+                "salary=" + salary +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

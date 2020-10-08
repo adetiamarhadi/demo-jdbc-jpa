@@ -1,19 +1,21 @@
 package com.github.adetiamarhadi.demojdbcjpa.entity;
 
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@ToString
+@NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "EmployeeType")
 public abstract class Employee {
 
     @Id
     @GeneratedValue
-    private Long id;
-    private String name;
+    protected Long id;
+
+    @Column(nullable = false)
+    protected String name;
 
     protected Employee(String name) {
         this.name = name;
