@@ -118,7 +118,9 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 
 		this.employeeRepository.save(new FullTimeEmployee("adet", new BigDecimal("10000")));
 		this.employeeRepository.save(new PartTimeEmployee("marhadi", new BigDecimal("50")));
-		List<Employee> all = this.employeeRepository.findAll();
-		log.info("{}", all);
+		List<FullTimeEmployee> fullTimeEmployees = this.employeeRepository.findAllFulltimeEmployee();
+		List<PartTimeEmployee> partTimeEmployees = this.employeeRepository.findAllPartTimeEmployee();
+		log.info("{}", fullTimeEmployees);
+		log.info("{}", partTimeEmployees);
 	}
 }
