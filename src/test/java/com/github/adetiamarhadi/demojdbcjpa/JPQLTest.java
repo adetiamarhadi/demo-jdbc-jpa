@@ -27,4 +27,12 @@ public class JPQLTest {
                 .createNamedQuery("get_all_100_steps_course", Course.class).getResultList();
         System.out.println(resultList);
     }
+
+    @Test
+    public void testGetCourseWithoutStudent() {
+        List<Course> resultList = this.entityManager
+                .createQuery("select c from Course c where c.students is empty", Course.class).getResultList();
+        System.out.println("course without student:");
+        resultList.stream().map(l -> l.getName()).forEach(System.out::println);
+    }
 }
