@@ -35,4 +35,20 @@ public class JPQLTest {
         System.out.println("course without student:");
         resultList.stream().map(l -> l.getName()).forEach(System.out::println);
     }
+
+    @Test
+    public void testGetCourseWithStudentAtLeast2() {
+        List<Course> resultList = this.entityManager
+                .createQuery("select c from Course c where size(c.students) >= 2", Course.class).getResultList();
+        System.out.println("course with at least 2 student:");
+        resultList.stream().map(Course::getName).forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetCourseWithStudentByOrder() {
+        List<Course> resultList = this.entityManager
+                .createQuery("select c from Course c order by size(c.students) desc", Course.class).getResultList();
+        System.out.println("ordered course with student:");
+        resultList.stream().map(Course::getName).forEach(System.out::println);
+    }
 }
