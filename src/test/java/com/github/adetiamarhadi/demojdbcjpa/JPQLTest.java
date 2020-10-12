@@ -1,6 +1,7 @@
 package com.github.adetiamarhadi.demojdbcjpa;
 
 import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
+import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,5 +51,14 @@ public class JPQLTest {
                 .createQuery("select c from Course c order by size(c.students) desc", Course.class).getResultList();
         System.out.println("ordered course with student:");
         resultList.stream().map(Course::getName).forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetStudentPassport() {
+        List<Student> resultList = this.entityManager
+                .createQuery("select s from Student s where s.passport.number like '%1234%'", Student.class)
+                .getResultList();
+        System.out.println("student passport:");
+        resultList.stream().map(Student::getName).forEach(System.out::println);
     }
 }
