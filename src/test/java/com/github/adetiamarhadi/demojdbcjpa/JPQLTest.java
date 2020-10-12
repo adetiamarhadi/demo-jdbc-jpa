@@ -61,4 +61,40 @@ public class JPQLTest {
         System.out.println("student passport:");
         resultList.stream().map(Student::getName).forEach(System.out::println);
     }
+
+    @Test
+    public void testGetJoinCourseAndStudent() {
+        List<Object[]> resultList = this.entityManager.createQuery("select c, s from Course c JOIN c.students s")
+                .getResultList();
+        System.out.println("get join course student:");
+        resultList.stream().map(o -> {
+            Course c = (Course) o[0];
+            Student s = (Student) o[1];
+            return String.join("-", c.getName(), s.getName());
+        }).forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetLeftJoinCourseAndStudent() {
+        List<Object[]> resultList = this.entityManager.createQuery("select c, s from Course c LEFT JOIN c.students s")
+                .getResultList();
+        System.out.println("get left join course student:");
+        resultList.stream().map(o -> {
+            Course c = (Course) o[0];
+            Student s = (Student) o[1];
+            return String.join("-", null == c ? null : c.getName(), null == s ? null : s.getName());
+        }).forEach(System.out::println);
+    }
+
+    @Test
+    public void testGetCrossJoinCourseAndStudent() {
+        List<Object[]> resultList = this.entityManager.createQuery("select c, s from Course c, Student s")
+                .getResultList();
+        System.out.println("get cross join course student:");
+        resultList.stream().map(o -> {
+            Course c = (Course) o[0];
+            Student s = (Student) o[1];
+            return String.join("-", null == c ? null : c.getName(), null == s ? null : s.getName());
+        }).forEach(System.out::println);
+    }
 }
