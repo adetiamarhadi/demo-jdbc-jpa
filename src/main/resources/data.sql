@@ -14,6 +14,7 @@ insert into course (id, name) values (1004, 'Udemy - Hibernate');
 insert into course (id, name) values (1005, 'Udemy - Spring Cloud');
 insert into course (id, name) values (1006, 'Udemy - Docker');
 insert into course (id, name) values (1007, 'Udemy - Elastic Search');
+insert into course (id, name) values (1008, 'Udemy - Angular with 100 Steps');
 
 insert into passport (id, number) values (300001, 'E123456');
 insert into passport (id, number) values (300002, 'N929812');
