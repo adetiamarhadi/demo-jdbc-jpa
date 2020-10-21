@@ -55,4 +55,24 @@ public class CriteriaQueryTest {
 
         resultList.stream().map(course -> course.getName()).forEach(System.out::println);
     }
+
+    @Test
+    public void testGetCourseWithoutStudent() {
+
+        CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Course> query = criteriaBuilder.createQuery(Course.class);
+
+        Root<Course> from = query.from(Course.class);
+
+        Predicate students = criteriaBuilder.isEmpty(from.get("students"));
+
+        query.where(students);
+
+        TypedQuery<Course> typedQuery = this.entityManager.createQuery(query.select(from));
+
+        List<Course> resultList = typedQuery.getResultList();
+
+        resultList.stream().map(course -> course.getName()).forEach(System.out::println);
+    }
 }
