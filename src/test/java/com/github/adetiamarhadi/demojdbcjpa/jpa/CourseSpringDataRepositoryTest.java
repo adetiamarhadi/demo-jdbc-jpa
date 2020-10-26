@@ -4,6 +4,9 @@ import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -58,5 +61,24 @@ public class CourseSpringDataRepositoryTest {
         List<Course> courses = this.repository.findAll(sort);
         System.out.println("all sorting courses");
         courses.stream().map(course -> course.getName()).forEach(System.out::println);
+    }
+
+    @Test
+    public void testPagination() {
+        PageRequest pageRequest = PageRequest.of(0, 3);
+        Page<Course> courses = this.repository.findAll(pageRequest);
+        System.out.println("total pages : " + courses.getTotalPages());
+        System.out.println("number : " + courses.getNumber());
+        System.out.println("is first page: " + courses.isFirst());
+        System.out.println("courses in page 1");
+        courses.getContent().stream().map(course -> course.getName()).forEach(System.out::println);
+
+        Pageable nextPageable = courses.nextPageable();
+        Page<Course> courses2 = this.repository.findAll(nextPageable);
+        System.out.println("total pages : " + courses2.getTotalPages());
+        System.out.println("number : " + courses2.getNumber());
+        System.out.println("is first page: " + courses2.isFirst());
+        System.out.println("courses in page 2");
+        courses2.getContent().stream().map(course -> course.getName()).forEach(System.out::println);
     }
 }
