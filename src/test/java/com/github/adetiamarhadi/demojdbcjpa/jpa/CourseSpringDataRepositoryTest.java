@@ -81,4 +81,11 @@ public class CourseSpringDataRepositoryTest {
         System.out.println("courses in page 2");
         courses2.getContent().stream().map(course -> course.getName()).forEach(System.out::println);
     }
+
+    @Test
+    public void testFindByName() {
+        List<Course> byName = this.repository.findByName("jenkins in 100 steps");
+        System.out.println("list course");
+        byName.stream().map(Course::getName).forEach(System.out::println);
+    }
 }
