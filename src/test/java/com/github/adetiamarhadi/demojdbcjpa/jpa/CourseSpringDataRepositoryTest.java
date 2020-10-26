@@ -4,6 +4,7 @@ import com.github.adetiamarhadi.demojdbcjpa.entity.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
@@ -49,5 +50,13 @@ public class CourseSpringDataRepositoryTest {
         System.out.println("all courses");
         courses.stream().map(course -> course.getName()).forEach(System.out::println);
         System.out.println("count : " + count);
+    }
+
+    @Test
+    public void testFindAllWithOrder() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+        List<Course> courses = this.repository.findAll(sort);
+        System.out.println("all sorting courses");
+        courses.stream().map(course -> course.getName()).forEach(System.out::println);
     }
 }
