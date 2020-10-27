@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,9 +23,13 @@ class CourseRepositoryTest {
     EntityManager entityManager;
 
     @Test
+    @Transactional
     void findById() {
         Course course = this.courseRepository.findById(1004L);
         assertEquals("updated course", course.getName());
+
+        Course course2 = this.courseRepository.findById(1004L);
+        assertEquals("updated course", course2.getName());
     }
 
     @Test
