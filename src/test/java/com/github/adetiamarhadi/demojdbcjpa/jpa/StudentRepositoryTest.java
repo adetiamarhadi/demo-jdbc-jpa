@@ -1,5 +1,6 @@
 package com.github.adetiamarhadi.demojdbcjpa.jpa;
 
+import com.github.adetiamarhadi.demojdbcjpa.entity.Address;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Passport;
 import com.github.adetiamarhadi.demojdbcjpa.entity.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,22 @@ class StudentRepositoryTest {
         Student student = entityManager.find(Student.class, 200001);
         log.info("student -> {}", student);
         log.info("passport -> {}", student.getPassport());
+    }
+
+    @Test
+    @Transactional
+    public void getStudentAndAddAddress() {
+
+        Student student = entityManager.find(Student.class, 200001);
+        student.setAddress(Address.builder()
+                .line1("bogor raya street")
+                .line2("kav. D3/R4")
+                .city("bogor")
+                .build());
+
+        this.entityManager.flush();
+
+        System.out.println(student.getAddress().getCity());
     }
 
     @Test
