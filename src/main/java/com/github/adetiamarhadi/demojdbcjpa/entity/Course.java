@@ -39,6 +39,12 @@ public class Course {
 
     private boolean isDeleted;
 
+    @PreRemove
+    public void preRemove() {
+        System.out.println(">>>>>>>>>>pre remove<<<<<<<<<<<<");
+        this.isDeleted = true;
+    }
+
     public void addReview(Review review) {
         this.reviews.add(review);
     }
