@@ -10,11 +10,11 @@ insert into person (id, name, location, birth_date) values (1001, 'Adet', 'Bekas
 insert into person (id, name, location, birth_date) values (1002, 'Avril', 'Jakarta', sysdate());
 insert into person (id, name, location, birth_date) values (1003, 'Tataz', 'Bekasi', sysdate());
 
-insert into course (id, name) values (1004, 'Udemy - Hibernate');
-insert into course (id, name) values (1005, 'Udemy - Spring Cloud');
-insert into course (id, name) values (1006, 'Udemy - Docker');
-insert into course (id, name) values (1007, 'Udemy - Elastic Search');
-insert into course (id, name) values (1008, 'Udemy - Angular with 100 Steps');
+insert into course (id, name, is_deleted) values (1004, 'Udemy - Hibernate', false);
+insert into course (id, name, is_deleted) values (1005, 'Udemy - Spring Cloud', false);
+insert into course (id, name, is_deleted) values (1006, 'Udemy - Docker', false);
+insert into course (id, name, is_deleted) values (1007, 'Udemy - Elastic Search', false);
+insert into course (id, name, is_deleted) values (1008, 'Udemy - Angular with 100 Steps', false);
 
 insert into passport (id, number) values (300001, 'E123456');
 insert into passport (id, number) values (300002, 'N929812');

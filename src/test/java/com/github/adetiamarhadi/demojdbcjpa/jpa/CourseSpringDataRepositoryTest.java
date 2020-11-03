@@ -13,8 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CourseSpringDataRepositoryTest {
@@ -87,5 +86,13 @@ public class CourseSpringDataRepositoryTest {
         List<Course> byName = this.repository.findByName("jenkins in 100 steps");
         System.out.println("list course");
         byName.stream().map(Course::getName).forEach(System.out::println);
+    }
+
+    @Test
+    @DirtiesContext
+    public void deleteById() {
+        this.repository.deleteById(1004L);
+        Optional<Course> byId = this.repository.findById(1004L);
+        assertFalse(byId.isPresent());
     }
 }

@@ -2,6 +2,8 @@ package com.github.adetiamarhadi.demojdbcjpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import java.util.List;
         @NamedQuery(name = "get_all_100_steps_course", query = "select c from Course c where name like '%100 steps'")
 })
 @Cacheable
+@SQLDelete(sql = "update course set is_deleted=true where id=?")
+@Where(clause = "is_deleted=false")
 public class Course {
 
     @Id
@@ -32,6 +36,8 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
     private List<Student> students = new ArrayList<>();
+
+    private boolean isDeleted;
 
     public void addReview(Review review) {
         this.reviews.add(review);
