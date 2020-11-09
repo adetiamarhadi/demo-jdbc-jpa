@@ -98,11 +98,11 @@ public class DemoJdbcJpaApplication implements CommandLineRunner {
 		this.studentRepository.saveStudentWithPasspor();
 		List<Review> reviews = Arrays.asList(
 				Review.builder()
-						.rating("5")
+						.rating(ReviewRating.FIVE)
 						.description("elasticsearch's course that makes me a superman!")
 						.build(),
 				Review.builder()
-						.rating("5")
+						.rating(ReviewRating.FIVE)
 						.description("this elasticsearch course really amazing!")
 						.build()
 		);

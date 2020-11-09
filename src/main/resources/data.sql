@@ -24,9 +24,9 @@ insert into student (id, name, passport_id) values (200001, 'Ranga', 300001);
 insert into student (id, name, passport_id) values (200002, 'Adam', 300002);
 insert into student (id, name, passport_id) values (200003, 'Jane', 300003);
 
-insert into review (id, rating, description, course_id) values (400001, '5', 'Great Course', 1005);
-insert into review (id, rating, description, course_id) values (400002, '4', 'Awesome Course', 1006);
-insert into review (id, rating, description, course_id) values (400003, '5', 'Amazing Course', 1005);
+insert into review (id, rating, description, course_id) values (400001, 'FIVE', 'Great Course', 1005);
+insert into review (id, rating, description, course_id) values (400002, 'FOUR', 'Awesome Course', 1006);
+insert into review (id, rating, description, course_id) values (400003, 'FIVE', 'Amazing Course', 1005);
 
 insert into student_course (student_id, course_id) values (200001, 1004);
 insert into student_course (student_id, course_id) values (200001, 1007);
